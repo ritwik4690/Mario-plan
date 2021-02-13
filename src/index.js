@@ -16,18 +16,22 @@ const store = createStore(
   compose(
     applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
     reduxFirestore(fbConfig),
-    reactReduxFirebase(fbConfig)
+    reactReduxFirebase(fbConfig, {
+      useFirestoreForProfile: true,
+      userProfile: "users",
+      attachAuthIsReady: true,
+    })
   )
 );
 
-ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
       <App />
-    </React.StrictMode>
-  </Provider>,
-  document.getElementById("root")
-);
+    </Provider>,
+    document.getElementById("root")
+  );
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
