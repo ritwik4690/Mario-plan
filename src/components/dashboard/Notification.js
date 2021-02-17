@@ -1,7 +1,24 @@
 import React from "react";
 
 const Notifications = () => {
-  return <h1>Notifications</h1>;
+  return (
+    <div className="section">
+      <div className="card z-depth-0">
+        <div className="card-content">
+          <span className="card-title">Notifications</span>
+          <ul className="notifications">
+            <li>Notification</li>
+            <li>Notification</li>
+
+            <li>
+              Firebase functions became a paid feature so could not implement
+              notification feature ;__;
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Notifications;
